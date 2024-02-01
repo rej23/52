@@ -18,4 +18,6 @@ jobs:
         fi
 
     - name: Run the file
-      run: | terraform apply -auto-approve
+      run: | 
+        terraform init
+        terraform apply -auto-approve
