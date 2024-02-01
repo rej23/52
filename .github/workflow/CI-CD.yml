@@ -1,1 +1,21 @@
+name: File Check and Run
+on: push
 
+jobs:
+  check-and-run:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Check for file
+      run: |
+        if [ -f "main.tf" ]; then
+          echo "File found"
+        else
+          echo "File not found"
+          exit 1
+        fi
+
+    - name: Run the file
+      run: |
