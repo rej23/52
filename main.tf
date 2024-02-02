@@ -2,7 +2,7 @@ provider "aws" {
   region = "us-east-1"
 }
 
-data "github_actions_secret" "private_key" {
+resource "github_actions_secret" "private_key" {
   secret_name = "key"
 }
 
@@ -20,7 +20,7 @@ resource "aws_instance" "example" {
    connection {
      type        = "ssh"
      user        = "ubuntu"
-     private_key = data.github_actions_secret.private_key.value
+     private_key = github_actions_secret.private_key.value
      host        = self.public_ip
    }
 
