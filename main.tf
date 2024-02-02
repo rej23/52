@@ -2,11 +2,6 @@ provider "aws" {
   region = "us-east-1"
 }
 
-resource "github_actions_secret" "private_key" {
-  repository      = "https://github.com/rej23/52.git"
-  secret_name = "key"
-}
-
 resource "aws_instance" "example" {
 
   ami           = "ami-0c7217cdde317cfec"
@@ -21,7 +16,7 @@ resource "aws_instance" "example" {
    connection {
      type        = "ssh"
      user        = "ubuntu"
-     private_key = github_actions_secret.private_key.value
+     private_key = "${var.private_key}"
      host        = self.public_ip
    }
 
