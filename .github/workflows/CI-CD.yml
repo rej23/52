@@ -10,7 +10,7 @@ jobs:
       with:
         aws-access-key-id: ${{ secrets.access_key }}
         aws-secrets-access-key: ${{ secrets.secret_key }}
-        aws-region: 
+        aws-region: us-east-1
         
 
     - name: configure aws cred
