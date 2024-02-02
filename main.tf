@@ -16,7 +16,7 @@ resource "aws_instance" "example" {
    connection {
      type        = "ssh"
      user        = "ubuntu"
-     private_key = ${{ secrets.key }}
+     private_key = "${base64decode(secrets.KEY)}"
      host        = self.public_ip
    }
 
