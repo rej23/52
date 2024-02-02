@@ -24,9 +24,9 @@ jobs:
           exit 1
         fi
 
-    - name: Run the file
-      run: | 
-        docker compose up -d
+    # - name: Run the file
+    #   run: | 
+    #     docker compose up -d
 
     - name: Run the file
       run: | 
