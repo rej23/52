@@ -16,7 +16,7 @@ resource "aws_instance" "example" {
   connection {
     type        = "ssh"
     user        = "ubuntu"
-    private_key = file("C:/Users/rej/Downloads/key.pem")
+    private_key = key
     host        = self.public_ip
   }
 
