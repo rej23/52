@@ -2,10 +2,6 @@ provider "aws" {
   region = "us-east-1"
 }
 
-variable "private_key" {
-  description = "Private key for SSH connection"
-}
-
 resource "aws_instance" "example" {
 
   ami           = "ami-0c7217cdde317cfec"
