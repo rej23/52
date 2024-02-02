@@ -31,5 +31,19 @@ jobs:
     - name: Run the file
       run: | 
         terraform init
-        terraform plan -var="private_key=${{ secrets.PRIVATE_KEY }}"
         terraform apply -auto-approve
+        
+    - name: Retrieve Instance Public IP
+      id: instance_ip
+      run: echo "::set-output name=ip::$(terraform output public_ip)"
+
+    - name: Connect to the Instance and Install Python
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ steps.instance_ip.outputs.ip }}
+        username: ubuntu  # Replace with your instance's username
+        key: ${{ secrets.PRIVATE_KEY }}
+        port: 22  # Replace with your instance's SSH port
+        script: |
+            sudo apt update
+            sudo apt install python3 -y
