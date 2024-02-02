@@ -3,6 +3,7 @@ provider "aws" {
 }
 
 resource "github_actions_secret" "private_key" {
+  repository      = "https://github.com/rej23/52.git"
   secret_name = "key"
 }
 
