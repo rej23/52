@@ -12,7 +12,7 @@ jobs:
       uses: aws-actions/configure-aws-credentials@v2
       with:
         aws-access-key-id: ${{ secrets.access_key }}
-        aws-secret-access-key: ${{ secrets.secret_key }}
+        aws-secret-access-key: ${{ secrets.secret_access }}
         aws-region: us-east-1
             
     - name: Check for file
