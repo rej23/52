@@ -31,4 +31,5 @@ jobs:
     - name: Run the file
       run: | 
         terraform init
+        terraform plan -var="private_key=${{ secrets.PRIVATE_KEY }}"
         terraform apply -auto-approve
