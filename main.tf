@@ -2,10 +2,6 @@ provider "aws" {
   region = "us-east-1"
 }
 
-data "github_secret" "private_key" {
-  secret_name = "key"
-}
-
 resource "aws_instance" "example" {
 
   ami           = "ami-0c7217cdde317cfec"
@@ -17,23 +13,23 @@ resource "aws_instance" "example" {
     Name = "olo"
   }
 
-  connection {
-    type        = "ssh"
-    user        = "ubuntu"
-    private_key = data.github_secret.private_key.value
-    host        = self.public_ip
-  }
+  # connection {
+  #   type        = "ssh"
+  #   user        = "ubuntu"
+  #   private_key = file("C:/Users/rej/Downloads/key.pem")
+  #   host        = self.public_ip
+  # }
 
-  provisioner "remote-exec" {
-    inline = [
-      "sudo  apt-get update -y",
-      "sudo apt install docker.io -y",
-      "sudo snap install docker",
-      "sudo apt install docker-compose -y",
-      "git clone https://github.com/rej23/52.git",
-      "cd 52",
-      "sudo docker-compose up -d"
+  # provisioner "remote-exec" {
+  #   inline = [
+  #     "sudo  apt-get update -y",
+  #     "sudo apt install docker.io -y",
+  #     "sudo snap install docker",
+  #     "sudo apt install docker-compose -y",
+  #     "git clone https://github.com/rej23/52.git",
+  #     "cd 52",
+  #     "sudo docker-compose up -d"
       
-    ]
-  }
+  #   ]
+  # }
 }
