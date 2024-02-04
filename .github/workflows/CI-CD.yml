@@ -6,10 +6,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
 
-    - name: set up ssh
-      uses: webfactory/ssh-agent@v0.4.1
-      with:
-       ssh-private-key: ${{ secrets.PRIVATE_KEY }}
+    # - name: set up ssh
+    #   uses: webfactory/ssh-agent@v0.4.1
+    #   with:
+    #    ssh-private-key: ${{ secrets.PRIVATE_KEY }}
+
     - name: Checkout repository
       uses: actions/checkout@v2
       
@@ -33,7 +34,9 @@ jobs:
 
 
 
-
+    - name: Configure environment variables
+      run: |
+        echo "TF_VAR_PRIVATE_KEY=${{ secrets.PRIVATE_KEY }}"
 
     - name: Run the file
       run: | 
