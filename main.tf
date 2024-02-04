@@ -4,7 +4,7 @@ provider "aws" {
 
 variable "PRIVATE_KEY" {
   description = "My secret variable"
-  default = env("PRIVATE_KEY")
+  default = ""
 }
 
 
@@ -23,7 +23,7 @@ resource "aws_instance" "example" {
      type        = "ssh"
      user        = "ubuntu"
      # private_key = filebase64(${{ secrets.PRIVATE_KEY }})
-     private_key = filebase64("${ var.PRIVATE_KEY }")
+     private_key = var.PRIVATE_KEY
      # private_key = file("${path.module}/hello.txt")
      host        = self.public_ip
    }
