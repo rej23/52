@@ -30,8 +30,13 @@ jobs:
           exit 1
         fi
 
-   
+  running-terraform-code:
+    runs-on: ubuntu-latest
+    steps:
 
+    - name: Run the file
+      run: terraform validate
+        
     - name: Run the file
       run: | 
         terraform init
