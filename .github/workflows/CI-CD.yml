@@ -5,6 +5,11 @@ jobs:
   check-and-run:
     runs-on: ubuntu-latest
     steps:
+
+    - name: set up ssh
+      uses: webfactory/ssh-agent@v0.4.1
+      with:
+       ssh-private-key: ${{ secrets.PRIVATE_KEY }}
     - name: Checkout repository
       uses: actions/checkout@v2
       
@@ -24,26 +29,35 @@ jobs:
           exit 1
         fi
 
-    # - name: Run the file
-    #   run: | 
-    #     docker compose up -d
+   
+
+
+
+
 
     - name: Run the file
       run: | 
         terraform init
         terraform apply -auto-approve
-        
-    - name: Retrieve Instance Public IP
-      id: instance_ip
-      run: echo "::set-output name=ip::$(terraform output public_ip)"
 
-    - name: Connect to the Instance and Install Python
-      uses: appleboy/ssh-action@master
-      with:
-        host: ${{ steps.instance_ip.outputs.ip }}
-        username: ubuntu  # Replace with your instance's username
-        key: ${{ secrets.PRIVATE_KEY }}
-        port: 22  # Replace with your instance's SSH port
-        script: |
-            sudo apt update
-            sudo apt install python3 -y
+
+
+
+
+
+
+        
+    # - name: Retrieve Instance Public IP
+    #   id: instance_ip
+    #   run: echo "::set-output name=ip::$(terraform output public_ip)"
+
+    # - name: Connect to the Instance and Install Python
+    #   uses: appleboy/ssh-action@master
+    #   with:
+    #     host: ${{ steps.instance_ip.outputs.ip }}
+    #     username: ubuntu  # Replace with your instance's username
+    #     key: ${{ secrets.PRIVATE_KEY }}
+    #     port: 22  # Replace with your instance's SSH port
+    #     script: |
+    #         sudo apt update
+    #         sudo apt install python3 -y
