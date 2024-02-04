@@ -2,6 +2,12 @@ provider "aws" {
   region = "us-east-1"
 }
 
+variable "PRIVATE_KEY" {
+  description = "My secret variable"
+  default = env("PRIVATE_KEY")
+}
+
+
 resource "aws_instance" "example" {
 
   ami           = "ami-0c7217cdde317cfec"
