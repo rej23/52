@@ -38,9 +38,8 @@ jobs:
         terraform apply -auto-approve
 
     - name: Delay for 30 seconds
-      uses: appleboy/wait-action@v2
-      with:
-        time: 30s
+      run: sleep 30s
+      
 
     - name: Destroy Terraform Resources
       run: terraform destroy -auto-approve
