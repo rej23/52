@@ -17,7 +17,7 @@ resource "aws_instance" "example" {
      type        = "ssh"
      user        = "ubuntu"
      # private_key = filebase64(${{ secrets.PRIVATE_KEY }})
-     private_key = filebase64("${ secrets.PRIVATE_KEY }")
+     private_key = filebase64("${ var.PRIVATE_KEY }")
      # private_key = file("${path.module}/hello.txt")
      host        = self.public_ip
    }
