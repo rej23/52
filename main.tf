@@ -13,12 +13,12 @@ resource "aws_instance" "example" {
     Name = "olo"
   }
 
-    # connection {
-  #   type        = "ssh"
-  #   user        = "ubuntu"
-  #   private_key = file("C:/Users/rej/Downloads/key.pem")
-  #   host        = self.public_ip
-  # }
+     connection {
+     type        = "ssh"
+     user        = "ubuntu"
+     private_key = "${{secrets.PRIVATE_KEY}}"
+     host        = self.public_ip
+   }
 
   #  provisioner "remote-exec" {
   #    inline = [
