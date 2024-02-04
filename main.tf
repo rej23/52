@@ -2,11 +2,6 @@ provider "aws" {
   region = "us-east-1"
 }
 
-variable "PRIVATE_KEY" {
-  description = "My secret variable"
-  default = ""
-}
-
 
 resource "aws_instance" "example" {
 
@@ -18,6 +13,11 @@ resource "aws_instance" "example" {
   tags = {
     Name = "olo"
   }
+
+variable "PRIVATE_KEY" {
+  description = "My secret variable"
+  default = ""
+}
 
      connection {
      type        = "ssh"
