@@ -41,11 +41,4 @@ resource "aws_instance" "example" {
     }
 }
 
-resource "local_file" "myipaddress" {
-  content = <<EOF
-   ${aws_instance.example.public_ip}     
-  EOF
-
-    filename = "${path.module}/ip.txt"
-}
  
