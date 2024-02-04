@@ -30,10 +30,6 @@ jobs:
           exit 1
         fi
 
-  running-terraform-code:
-    runs-on: ubuntu-latest
-    steps:
-
     - name: Run the file
       run: terraform validate
         
@@ -45,7 +41,6 @@ jobs:
     - name: Delay for 30 seconds
       run: sleep 30s
       
-
     - name: Destroy Terraform Resources
       run: terraform destroy -auto-approve
 
