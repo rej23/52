@@ -29,13 +29,11 @@ jobs:
           echo "File not found"
           exit 1
         fi
-
-    - name: Run the file
-      run: terraform validate
-        
+   
     - name: Run the file
       run: | 
         terraform init
+        terraform validate
         terraform apply -auto-approve
 
     - name: Delay for 30 seconds
