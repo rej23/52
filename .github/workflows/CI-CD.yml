@@ -39,8 +39,8 @@ jobs:
     - name: Delay for 30 seconds
       run: sleep 30s
       
-    - name: Destroy Terraform Resources
-      run: terraform destroy -auto-approve
+    # - name: Destroy Terraform Resources
+    #   run: terraform destroy -auto-approve
 
 
         
