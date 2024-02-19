@@ -40,10 +40,3 @@ resource "aws_instance" "example" {
       ]
     }
 }
-<<<<<<< HEAD
- 
- 
-=======
-
- 
->>>>>>> 0255c19fca705e8d2a54c0c700d41fff3d36b6b8
