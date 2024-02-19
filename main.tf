@@ -35,7 +35,7 @@ resource "aws_instance" "example" {
         "sudo apt install docker-compose -y",
         "git clone https://github.com/rej23/52.git",
         "cd 52",
-        "sudo docker-compose up -d"
+        "sudo docker-compose up -d",
         "sudo apt-get install -y squid",
         "sudo cp /etc/squid/squid.conf /etc/squid/squid.conf.original", // Backup the original configuration file
         "sudo chmod a-w /etc/squid/squid.conf.original", // Protect the original file from writing
