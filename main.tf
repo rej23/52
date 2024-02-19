@@ -36,7 +36,28 @@ resource "aws_instance" "example" {
         "git clone https://github.com/rej23/52.git",
         "cd 52",
         "sudo docker-compose up -d"
+        "sudo apt-get install -y squid",
+        "sudo cp /etc/squid/squid.conf /etc/squid/squid.conf.original", // Backup the original configuration file
+        "sudo chmod a-w /etc/squid/squid.conf.original", // Protect the original file from writing
+        "sudo bash -c 'echo \"http_port 3128\" >> /etc/squid/squid.conf'", // Set the HTTP port to listen through the squid proxy
+        "sudo bash -c 'echo \"acl localnet src 0.0.0.1/32\" >> /etc/squid/squid.conf'", // Add an ACL for localnet TO SPECIFY DIFFERENT IP/INSTANCES THAT CAN ACCESS THE SQUID PROXY
+        "sudo bash -c 'echo \"http_access allow localnet\" >> /etc/squid/squid.conf'", // Allow access to localnet
+        "sudo systemctl restart squid", // Restart Squid to apply the changes
       
       ]
     }
 }
+
+
+# provisioner "remote-exec" {
+#       inline = [
+#         "sudo  apt-get update -y",
+#         "sudo apt install docker.io -y",
+#         "sudo snap install docker",
+#         "sudo apt install docker-compose -y",
+#         "git clone https://github.com/rej23/52.git",
+#         "cd 52",
+#         "sudo docker-compose up -d"
+      
+#       ]
+#     }
