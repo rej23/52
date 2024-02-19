@@ -22,7 +22,7 @@ resource "aws_instance" "example" {
      type        = "ssh"
      user        = "ubuntu"
      # private_key = filebase64(${{ secrets.PRIVATE_KEY }})
-     private_key = var.PRIVATE_KEY
+     #private_key = var.PRIVATE_KEY
      # private_key = file("${path.module}/hello.txt")
      host        = self.public_ip
    }
@@ -40,5 +40,10 @@ resource "aws_instance" "example" {
       ]
     }
 }
+<<<<<<< HEAD
  
  
+=======
+
+ 
+>>>>>>> 0255c19fca705e8d2a54c0c700d41fff3d36b6b8
