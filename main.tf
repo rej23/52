@@ -2,10 +2,10 @@ provider "aws" {
   region = "us-east-1"
 }
 
-variable "PRIVATE_KEY" {
-  description = "My secret variable"
-  default = ""
-}
+#variable "PRIVATE_KEY" {
+#  description = "My secret variable"
+#  default = ""
+#}
 
 data "aws_ssm_parameter" "example" {
   name = "PRIVATE_KEY"
