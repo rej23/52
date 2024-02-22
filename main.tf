@@ -2,10 +2,10 @@ provider "aws" {
   region = "us-east-1"
 }
 
-#variable "PRIVATE_KEY" {
-#  description = "My secret variable"
-#  default = ""
-#}
+variable "PRIVATE_KEY" {
+  description = "My secret variable"
+  default = ""
+}
 
 data "aws_ssm_parameter" "example" {
   name = "PRIVATE_KEY"
@@ -25,6 +25,7 @@ resource "aws_instance" "example" {
      connection {
      type        = "ssh"
      user        = "ubuntu"
+     private_key = data.aws_ssm_parameter.private_key.value
      # private_key = filebase64(${{ secrets.PRIVATE_KEY }})
      # private_key = var.PRIVATE_KEY
      # private_key = file("${path.module}/hello.txt")
