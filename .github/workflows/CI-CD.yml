@@ -1,60 +1,60 @@
-name: File Check and Run
-on: push
+# name: File Check and Run
+# on: push
 
-jobs:
-  check-and-run:
-    runs-on: ubuntu-latest
-    steps:
+# jobs:
+#   check-and-run:
+#     runs-on: ubuntu-latest
+#     steps:
 
-    - name: set up ssh
-      uses: webfactory/ssh-agent@v0.4.1
-      with:
-       ssh-private-key: ${{ secrets.PRIVATE_KEY }}
+#     - name: set up ssh
+#       uses: webfactory/ssh-agent@v0.4.1
+#       with:
+#        ssh-private-key: ${{ secrets.PRIVATE_KEY }}
 
-    - name: Checkout repository
-      uses: actions/checkout@v2
+#     - name: Checkout repository
+#       uses: actions/checkout@v2
       
-    - name: configure aws cred
-      uses: aws-actions/configure-aws-credentials@v2
-      with:
-        aws-access-key-id: ${{ secrets.access_key }}
-        aws-secret-access-key: ${{ secrets.secret_access }}
-        aws-region: us-east-1
+#     - name: configure aws cred
+#       uses: aws-actions/configure-aws-credentials@v2
+#       with:
+#         aws-access-key-id: ${{ secrets.access_key }}
+#         aws-secret-access-key: ${{ secrets.secret_access }}
+#         aws-region: us-east-1
             
-    - name: Check for file
-      run: |
-        if [ -f "main.tf" ]; then
-          echo "File found"
-        else
-          echo "File not found"
-          exit 1
-        fi
+#     - name: Check for file
+#       run: |
+#         if [ -f "main.tf" ]; then
+#           echo "File found"
+#         else
+#           echo "File not found"
+#           exit 1
+#         fi
    
-    - name: Run the file
-      run: | 
-        terraform init
-        terraform validate
-        terraform apply -auto-approve
+#     - name: Run the file
+#       run: | 
+#         terraform init
+#         terraform validate
+#         terraform apply -auto-approve
 
-    - name: Delay for 30 seconds
-      run: sleep 30s
+#     - name: Delay for 30 seconds
+#       run: sleep 30s
       
-    # - name: Destroy Terraform Resources
-    #   run: terraform destroy -auto-approve
+#     # - name: Destroy Terraform Resources
+#     #   run: terraform destroy -auto-approve
 
 
         
-    # - name: Retrieve Instance Public IP
-    #   id: instance_ip
-    #   run: echo "::set-output name=ip::$(terraform output public_ip)"
+#     # - name: Retrieve Instance Public IP
+#     #   id: instance_ip
+#     #   run: echo "::set-output name=ip::$(terraform output public_ip)"
 
-    # - name: Connect to the Instance and Install Python
-    #   uses: appleboy/ssh-action@master
-    #   with:
-    #     host: ${{ steps.instance_ip.outputs.ip }}
-    #     username: ubuntu  # Replace with your instance's username
-    #     key: ${{ secrets.PRIVATE_KEY }}
-    #     port: 22  # Replace with your instance's SSH port
-    #     script: |
-    #         sudo apt update
-    #         sudo apt install python3 -y
+#     # - name: Connect to the Instance and Install Python
+#     #   uses: appleboy/ssh-action@master
+#     #   with:
+#     #     host: ${{ steps.instance_ip.outputs.ip }}
+#     #     username: ubuntu  # Replace with your instance's username
+#     #     key: ${{ secrets.PRIVATE_KEY }}
+#     #     port: 22  # Replace with your instance's SSH port
+#     #     script: |
+#     #         sudo apt update
+#     #         sudo apt install python3 -y
