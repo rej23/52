@@ -15,8 +15,7 @@ resource "aws_instance" "example" {
 
   ami           = "ami-0c7217cdde317cfec"
   instance_type = "t2.micro"
-  key_name      = "${data.aws_ssm_parameter.example.value}"
-  # key_name      = "firstkey"
+  key_name      = "firstkey"
   # other instance configurations
   vpc_security_group_ids = ["sg-0a82a67de4707a7e5"]
   tags = {
@@ -27,6 +26,7 @@ resource "aws_instance" "example" {
      type        = "ssh"
      user        = "ubuntu"
      # private_key = filebase64(${{ secrets.PRIVATE_KEY }})
+     private_key = var.PRIVATE_KEY
      #private_key = var.PRIVATE_KEY
      # private_key = file("${path.module}/hello.txt")
      host        = self.public_ip
